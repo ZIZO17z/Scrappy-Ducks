@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serious Duck Research 🦆</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #cce7ff;
+            transition: background 0.5s ease-in-out;
+        }
+        h1 {
+            color: #2d6a4f;
+        }
+        #duck-image {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .hidden {
+            display: none;
+        }
+        #fact {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            opacity: 0;
+            transition: opacity 0.7s ease-in-out;
+        }
+        button {
+            padding: 15px 25px;
+            font-size: 18px;
+            margin-top: 20px;
+            cursor: pointer;
+            background-color: #ffcc00;
+            border: none;
+            border-radius: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+        button:hover {
+            background-color: #ffaa00;
+        }
+        button:active {
+            transform: scale(1.1);
+        }
+        /* Floating duck animation */
+        .floating-duck {
+            position: absolute;
+            width: 80px;
+            opacity: 0.8;
+            animation: floatDuck 3s linear infinite;
+        }
+        @keyframes floatDuck {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Ultimate Duck Research Center 🦆</h1>
+    <p>Learn everything about ducks! Click the button below for a random duck fact.</p>
+    
+    <!-- Random Duck Image -->
+    <img src="Duck.jpeg" alt="Duck">
+
+    <br>
+    <p id="fact" class="hidden"></p>
+
+    <button onclick="showFact()">Get a Duck Fact</button>
+
+    <!-- Duck Sound -->
+    <audio id="quack-sound">
+        <source src="https://www.fesliyanstudios.com/play-mp3/4380" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const facts = [
+            "Ducks have waterproof feathers! 🦆",
+            "A group of ducks is called a 'paddling' or a 'raft'. 🚣‍♂️",
+            "Ducks can sleep with one eye open! 👁️",
+            "Male ducks are called drakes, females are hens, and babies are ducklings. 🐥",
+            "Some duck species migrate thousands of miles every year! ✈️",
+            "Ducks can recognize human faces and voices! 😲",
+            "Some ducks can dive over 240 feet deep! 🌊"
+        ];
+
+        const duckImages = [
+            "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+            "https://media.giphy.com/media/J3JBrJcPEP4TS/giphy.gif",
+            "https://media.giphy.com/media/l3vRm6EkqVkiATtXi/giphy.gif",
+            "https://media.giphy.com/media/3ohhwf1Y9jyKqGp2UQ/giphy.gif"
+        ];
+
+        function showFact() {
+            let factElement = document.getElementById("fact");
+            let quackSound = document.getElementById("quack-sound");
+
+            // Random fact
+            let randomFact = facts[Math.floor(Math.random() * facts.length)];
+            factElement.textContent = randomFact;
+            factElement.classList.remove("hidden");
+            factElement.style.opacity = 1;
+
+            // Change background color slightly
+            document.body.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 80%)`;
+
+            // Play quack sound with slight delay
+            setTimeout(() => quackSound.play(), Math.random() * 500);
+
+            // Random Duck GIF
+            let duckImage = document.getElementById("duck-image");
+            duckImage.src = duckImages[Math.floor(Math.random() * duckImages.length)];
+
+            // Add floating duck animation
+            createFloatingDuck();
+        }
+
+        function createFloatingDuck() {
+            let duckEmoji = document.createElement("img");
+            duckEmoji.src = "https://img.icons8.com/emoji/100/duck.png"; 
+            duckEmoji.className = "floating-duck";
+            document.body.appendChild(duckEmoji);
+
+            // Random position
+            duckEmoji.style.left = Math.random() * window.innerWidth + "px";
+            duckEmoji.style.top = Math.random() * window.innerHeight + "px";
+
+            // Remove after animation
+            setTimeout(() => duckEmoji.remove(), 3000);
+        }
+
+        // Load a random duck image on page load
+        window.onload = function () {
+            document.getElementById("duck-image").src = duckImages[Math.floor(Math.random() * duckImages.length)];
+        };
+    </script>
+</body>
+</html>

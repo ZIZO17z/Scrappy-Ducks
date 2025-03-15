@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quack Button</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin-top: 50px;
+            background-color: #cce7ff;
+            overflow: hidden;
+        }
+
+        .duck-button {
+            background-color: #ffcc00;
+            color: #000;
+            padding: 15px 30px;
+            font-size: 22px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        .duck-button:hover {
+            background-color: #ffaa00;
+        }
+
+        .duck-button:active {
+            transform: scale(1.1);
+        }
+
+        /* Message styling */
+        #duck-message {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* Quack Counter */
+        #quack-counter {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #555;
+        }
+
+        /* Duck GIFs */
+        #duck-gif {
+            display: none;
+            margin-top: 20px;
+            width: 200px;
+            border-radius: 10px;
+        }
+
+        /* Floating duck animation */
+        .floating-duck {
+            position: absolute;
+            width: 100px;
+            height: auto;
+            opacity: 0.8;
+            animation: floatDuck 3s linear infinite;
+        }
+
+        @keyframes floatDuck {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🦆 Welcome to the Quack Button!</h1>
+    <button class="duck-button" onclick="quack()">Get a duck quote!</button>
+    <p id="duck-message"></p>
+    <p id="quack-counter">Quacks: 0</p>
+    <audio id="duckSound1">
+        <source src="duck-quack1.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="duckSound2">
+        <source src="duck-quack2.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        let quackCount = 0;
+
+        function quack() {
+            // Choose a random quack sound
+            let soundChoice = Math.random() > 0.5 ? "duckSound1" : "duckSound2";
+            let sound = document.getElementById(soundChoice);
+
+            // Add a random delay before playing (for realism)
+            setTimeout(() => sound.play(), Math.random() * 500);
+
+            // Funny messages
+            let messages = [
+                "Quack! That means hello in Duck!",
+                "Quack Quack! You have been duckrolled.",
+                "The Duck overlords approve of your click.",
+                "Did you just talk to a duck? Weird!",
+                "You have unlocked Duck Mode! 🦆",
+                "A duck somewhere just smiled at you.",
+                "You are now 1% more duck. Keep quacking!"
+            ];
+
+            let randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            let messageElement = document.getElementById("duck-message");
+
+            // Show message with fade-in effect
+            messageElement.innerText = randomMessage;
+            messageElement.style.opacity = 1;
+
+            // Update quack counter
+            quackCount++;
+            document.getElementById("quack-counter").innerText = `Quacks: ${quackCount}`;
+
+            // Show a random duck GIF
+            let duckGifs = [
+                "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+                "https://media.giphy.com/media/J3JBrJcPEP4TS/giphy.gif",
+                "https://media.giphy.com/media/l3vRm6EkqVkiATtXi/giphy.gif",
+                "https://media.giphy.com/media/3ohhwf1Y9jyKqGp2UQ/giphy.gif"
+            ];
+
+            let duckGifElement = document.getElementById("duck-gif");
+            duckGifElement.src = duckGifs[Math.floor(Math.random() * duckGifs.length)];
+            duckGifElement.style.display = "block";
+
+            // Add a floating duck animation randomly
+            createFloatingDuck();
+        }
+
+        function createFloatingDuck() {
+            let duckEmoji = document.createElement("img");
+            duckEmoji.src = "https://img.icons8.com/emoji/100/duck.png"; // Duck emoji icon
+            duckEmoji.className = "floating-duck";
+            document.body.appendChild(duckEmoji);
+
+            // Random position
+            duckEmoji.style.left = Math.random() * window.innerWidth + "px";
+            duckEmoji.style.top = Math.random() * window.innerHeight + "px";
+
+            // Remove after animation
+            setTimeout(() => duckEmoji.remove(), 3000);
+        }
+    </script>
+
+</body>
+</html>

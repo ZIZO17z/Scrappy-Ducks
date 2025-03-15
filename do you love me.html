@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duck Law 🦆⚖️</title>
+  <style>
+    /* Background animation */
+    @keyframes backgroundShift {
+      0% { background-color: #f0f8ff; }
+      50% { background-color: #d0f4de; }
+      100% { background-color: #f0f8ff; }
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background: #f0f8ff;
+      animation: backgroundShift 5s infinite alternate;
+    }
+
+    .content {
+      text-align: center;
+      padding: 40px;
+      border: 3px solid #ffaa00;
+      border-radius: 15px;
+      background-color: #222;
+      box-shadow: 0 4px 15px rgba(255, 165, 0, 0.5);
+      max-width: 600px;
+      color: #fff;
+      animation: borderGlow 1s infinite alternate;
+    }
+
+    @keyframes borderGlow {
+      0% { border-color: #ffaa00; }
+      100% { border-color: #ff5500; }
+    }
+
+    h1 {
+      font-size: 22px;
+      display: block;
+      white-space: normal;
+      word-wrap: break-word;
+      overflow: hidden;
+      border-right: 3px solid transparent;
+      animation: typing 4s steps(80, end), blink 0.6s infinite;
+      padding: 10px;
+      margin: 0;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    /* Bouncing judge duck */
+    .duck-icon {
+      font-size: 50px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content">
+    <div class="duck-icon">🦆⚖️</div>
+    <h1>According to the 4th law of 9999 B.C.E, loving a duck is illegal if you do not have the ability to lay eggs!</h1>
+  </div>
+
+</body>
+</html>
